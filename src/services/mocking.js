@@ -1,9 +1,7 @@
 import { faker } from '@faker-js/faker';
 
 class MockingService {
-    async generateMockingUsers(){
-        
-    }
+    
 
     async generateMockingPets(){
         const pets=[];
