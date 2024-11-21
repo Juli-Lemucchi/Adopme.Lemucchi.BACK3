@@ -1,5 +1,16 @@
 import { usersService } from "../services/index.js"
 
+const createUser = async (req, res) => {
+    try {
+        const nuevoUsuario = req.body; 
+        await usersService.create(nuevoUsuario); 
+        res.status(201).send({status:"success", payload: nuevoUsuario});
+    } catch (error) {
+        res.status(500).send("Error fatal")
+    }
+}
+
+
 const getAllUsers = async(req,res)=>{
     const users = await usersService.getAll();
     res.send({status:"success",payload:users})
@@ -28,6 +39,7 @@ const deleteUser = async(req,res) =>{
 }
 
 export default {
+    createUser,
     deleteUser,
     getAllUsers,
     getUser,
