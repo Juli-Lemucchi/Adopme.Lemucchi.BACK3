@@ -15,7 +15,7 @@ describe("Testing de la app AdopME", () => {
                 birthday: "2003-01-01"
             }
 
-            const {statusCode, ok, _body} = await requester.post("api/pets").send(mockDino);
+            const {statusCode, ok, _body} = await requester.post("/api/pets").send(mockDino);
 
             expect(_body.payload).to.have.property("_id");
         })
@@ -26,14 +26,14 @@ describe("Testing de la app AdopME", () => {
                 specie: "Michi",
                 birthday: "2012-11-06"
             };
-            const {statusCode, _body} = await requester.post("api/pets").send(mockDino2);
+            const {statusCode, _body} = await requester.post("/api/pets").send(mockDino2);
 
             expect(statusCode).to.equal(200);
             expect(_body.payload.adopted).to.equal(false);
         })
 
         it("Al obtener a las mascotas con el metodo GET, la respuesta debe tener los campos STATUS y PAYLOAD. Ademas, PAYLOAD debe ser de tipo arreglo", async () => {
-          const {statusCode, _body}= await requester.get("api/pets"); 
+          const {statusCode, _body}= await requester.get("/api/pets"); 
         
           expect(statusCode).to.equal(200);
           expect(_body).to.have.property("payload").that.is.an("array");
@@ -45,7 +45,7 @@ describe("Testing de la app AdopME", () => {
                 specie:"Pez",
                 birthday:"2003-01-01"
             };
-            await requester.post("api/pets").send(newDinoPet);
+            await requester.post("/api/pets").send(newDinoPet);
 
             const {_body:{payload:{_id}}}= await requester.post("/api/pets").send(newDinoPet);
 
